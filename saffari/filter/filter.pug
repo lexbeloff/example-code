@@ -1,0 +1,114 @@
+include ./radio/filter-radio.pug
+include ./range/filter-range.pug
+include ./address/filter-address.pug
+include ../core/select/select.pug
+include ../core/animation/height/animation-height.pug
+include ../core/label/label.pug
+include ../core/btn/btn.pug
+include ../core/hint/hint.pug
+
+mixin filter(info, className)
+  - var activeTab = '';
+  - var showMore = false;
+  - var mainFields = [];
+  - var moreFields = [];
+  - var visibleButtons = [];
+  - var tags = [];
+  - var special = [];
+
+  if (info)
+    .filter(class=className)
+      if (info.tabs)
+        each tab in info.tabs
+          .filter__tab
+            if (activeTab === tab.name)
+              .filter__main(class='filter__main--' + tab.type)
+                if (mainFields)
+                  each field in mainFields
+                    .filter__field(class='filter__field--' + field.type+' filter__field--' + [((field.type === 'radio') ? 'radio' : '') || ((field.type === 'select') ? 'select filter__field--' + field.name : '') || ((field.type === 'range' && field.name !== 'price') ? 'range filter__field--' + field.name : '') || ((field.type !== 'radio') ? field.name : '')], data-title=(field.type !== 'select' && field.title ? field.title : ''))
+                      if (field.type === 'hidden')
+                        input(type='hidden', name=field.name, value=field.value)
+                      else
+                        | <!---->
+                      if (field.type === 'radio')
+                        +filter-radio(field.values, field.name, 'filter__radio ' + (field.values.length === 3 ? 'filter__radio--big' : ''), tab.name)(@change='setFieldData')
+                      else if (field.type === 'select' && field.name === 'realty_type')
+                        +select(field, 'filter__realty-select', 0.3)(@input='changeTab')
+                      else if (field.type === 'select')
+                        +select(field, 'filter__object-select', 0.3)(@input='setFieldData')
+                      else if (field.type === 'range' && field.name === 'price')
+                        +filter-range(field.range, 'filter__price', field.name, tab.name)(@change='setRange')
+                      else if (field.type === 'range')
+                        +filter-range(field.range, 'filter__range')(@change='setRange')
+                      else if (field.type === 'button')
+                        +btn('button', field.text, 'btn--border filter__button')(@click='openPopup(field.name)')
+                      else if (field.type === 'input' && field.name === 'search')
+                        +hint(field, 'filter-address filter__addres')(@passHint='setFieldData')
+                      else if (field.type === 'hidden')
+                        input(type='hidden', name=field.name, value=field.value)
+                      else
+                        | <!---->
+                else
+                  | <!---->
+
+                if (moreFields && moreFields.length !== 0)
+                  +animation-height(0.4)
+                    if (showMore)
+                      .filter__hidden
+                        .filter__main.filter__main--hidden
+                          each element in moreFields
+                            .filter__field(class='filter__field--' + [((element.type === 'radio') ? 'radio' : '') || ((element.type === 'select') ? 'select filter__field--' + element.name : '') || ((element.type === 'range' && element.name !== 'price') ? 'range filter__field--' + element.name : '') || ((element.type !== 'radio') ? element.name : '')])
+                              if (element.type === 'range')
+                                +filter-range(element.range, 'filter__range', element.name, tab.name)(@change='setRange')
+                              else
+                                | <!---->
+
+                              if (element.type === 'select')
+                                +select(element, 'filter__hidden-select', 0.3)(@input='setFieldData')
+                              else
+                                | <!---->
+                    else
+                      | <!---->
+                else
+                  | <!---->
+                .filter__buttons
+                  if ((visibleButtons && visibleButtons.length !== 0) || (special && special.length > 0))
+                    .filter__popup-btns
+                      if (visibleButtons && visibleButtons.length !== 0)
+                        .filter__popup-btns-wrp
+                          each btn in visibleButtons
+                            .filter__popup-btn(@click='openPopup(btn)')
+                              span!= btn.text
+                              if (btn.count)
+                                .filter__popup-btn-count!= btn.count
+                              else
+                                | <!---->
+                      else
+                        | <!---->
+                      if (special && special.length)
+                        .filter__tags.filter__tags--filter
+                          .filter__tags-wrp
+                            each tag, index in special
+                              +label(tag, 'filter__tag filter__tag--rect')(:key='tag.value', @change='setTag(tag)')
+                      else
+                        | <!---->
+                  else
+                    | <!---->
+                  if (moreFields && moreFields.length !== 0)
+                    .filter__more(class=(showMore ? 'filter__more--open' : ''))
+                      span(@click='toggleMore')!= (showMore ? 'Скрыть фильтры' : 'Еще фильтры')
+                  else
+                    | <!---->
+                if (tab.tags && tab.tags.list)
+                  .filter__tags
+                    .filter__tags-wrp
+                      each tag in tab.tags.list
+                        +label(tag, 'filter__tag')(@change='setTag(tag)')
+                else
+                  | <!---->
+            else
+              | <!---->
+      else
+        | <!---->
+  else
+    | <!---->

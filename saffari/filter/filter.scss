@@ -1,0 +1,422 @@
+$parent: 'filter';
+$range: 'filter-range';
+$address: 'filter-address';
+$select: 'select';
+$radio: 'filter-radio';
+
+@include block($parent) {
+  position: relative;
+
+  @include element($parent, 'main') {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    position: relative;
+
+    @include modifier($parent, 'hidden') {
+      padding-left: 1px;
+      padding-top: rem(6);
+      width: calc(100% + 1px);
+
+      @media (min-width: $d1280) {
+        padding-right: 0;
+      }
+    }
+  }
+
+  @include element($parent, 'tab') {
+    @media (min-width: $tMin) {
+      margin-right: rem(-16);
+    }
+  }
+
+  @include element($parent, 'field') {
+    margin-bottom: rem(20);
+    flex-basis: 100%;
+    max-width: 100%;
+    position: relative;
+
+    @media (min-width: $tMin) {
+      margin-right: rem(12);
+    }
+
+    @media (min-width: $tMin) and (max-width: $d1279) {
+      max-width: calc(50% - 16px);
+      flex-basis: calc(50% - 16px);
+    }
+
+    @media (min-width: $d1280) {
+      flex-basis: auto;
+      max-width: none;
+    }
+
+    &::before {
+      content: attr(data-title);
+      background-color: $w;
+      padding: 0 rem(5);
+      font-size: rem(12);
+      line-height: 1;
+      color: $gray4;
+      position: absolute;
+      left: rem(15);
+      top: rem(-7);
+      z-index: 2;
+    }
+
+    @include modifier($parent, 'hidden') {
+      display: none;
+    }
+
+    @include modifier($parent, 'select') {
+      @media (min-width: $d1280) {
+        max-width: rem(160);
+        flex-basis: rem(160);
+      }
+    }
+
+    @include modifier($parent, 'realty_type') {
+      @media (min-width: $d1280) {
+        max-width: rem(180);
+        width: 100%;
+      }
+    }
+
+    @include modifier($parent, 'address') {
+      @media (min-width: $d1280) {
+        max-width: rem(219);
+        flex-basis: rem(219);
+      }
+    }
+
+    @include modifier($parent, 'range') {
+      @media (min-width: $d1280) {
+        max-width: rem(149);
+        flex-basis: rem(149);
+      }
+    }
+
+    @include modifier($parent, 'price') {
+      @media (min-width: $d1280) {
+        flex-basis: auto;
+        max-width: none;
+      }
+    }
+
+    @include modifier($parent, 'premises') {
+      @media (min-width: $d1280) {
+        max-width: rem(197);
+        flex-basis: rem(197);
+      }
+    }
+
+    @include modifier($parent, 'building') {
+      @media (min-width: $d1280) {
+        max-width: rem(270);
+        flex-basis: rem(270);
+      }
+    }
+
+    @include modifier($parent, 'district') {
+      @media (max-width: $mMax) {
+        max-width: 31%;
+        flex-basis: 31%;
+      }
+    }
+
+    @include modifier($parent, 'location') {
+      @media (max-width: $mMax) {
+        flex-basis: 69%;
+        max-width: 69%;
+      }
+
+      @media (min-width: $d1280) {
+        max-width: rem(270);
+        flex-basis: rem(270);
+      }
+    }
+
+    @include modifier($parent, 'search') {
+      @media (min-width: $d1280) {
+        margin-right: 0;
+      }
+    }
+  }
+
+  @include element($parent, 'radio') {
+    height: rem(45);
+
+    @media (min-width: $d1280) {
+      width: rem(166);
+    }
+
+    .filter-radio__item {
+      height: 100%;
+    }
+
+    &.filter-radio--big {
+      justify-content: space-between;
+
+      @media (min-width: $d1280) {
+        width: rem(302);
+      }
+
+      .filter-radio__item {
+        flex-basis: auto;
+        max-width: none;
+        padding: 0 rem(10);
+      }
+    }
+  }
+
+  @include element($parent, 'price') {
+    .#{$range}__inputs {
+      flex-basis: 74%;
+      max-width: 74%;
+
+      @media (min-width: $d1280) {
+        width: rem(200);
+        flex-basis: auto;
+        max-width: none;
+      }
+    }
+
+    .#{$range}__currency {
+      @media (max-width: $d1279) {
+        flex-basis: 26%;
+        max-width: 26%;
+      }
+
+      @media (min-width: $d1280) {
+        max-width: rem(66);
+        flex-basis: rem(66);
+      }
+    }
+  }
+
+  @include element($address, 'address') {
+    @media (min-width: $d1280) {
+      padding-right: rem(15);
+    }
+  }
+
+  @include element($parent, 'hidden') {
+    width: 100%;
+    margin-top: rem(-6);
+
+    @include element($parent, 'field') {
+      margin-left: -1px;
+    }
+  }
+
+  @include element($parent, 'button') {
+    min-width: 0;
+    height: rem(45);
+    width: 100%;
+
+    @media (min-width: $d1280) {
+      width: rem(149);
+    }
+  }
+
+  @include element($parent, 'buttons') {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    @media (min-width: $tMin) {
+      width: calc(100% - 16px);
+      justify-content: space-between;
+    }
+  }
+
+  @include element($parent, 'popup-btns') {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: rem(30);
+
+    @media (min-width: $tMin) {
+      justify-content: flex-start;
+      margin-bottom: 0;
+      flex-grow: 1;
+      flex-basis: auto;
+    }
+  }
+
+  @include element($parent, 'popup-btns-wrp') {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+    @media (min-width: $tMin) {
+      width: auto;
+      justify-content: flex-start;
+      margin-right: rem(20);
+    }
+  }
+
+  @include element($parent, 'popup-btn') {
+    font-size: rem(16);
+    line-height: rem(24);
+    font-weight: 600;
+    color: $red2;
+    cursor: pointer;
+    transition: color $ease;
+    position: relative;
+    display: inline-flex;
+
+    &:not(:last-of-type) {
+      margin-right: rem(25);
+    }
+
+    &:hover {
+      color: $purple;
+    }
+  }
+
+  @include element($parent, 'popup-btn-count') {
+    display: inline-block;
+    height: rem(14);
+    min-width: rem(14);
+    padding: 0 3px;
+    background-color: $red2;
+    color: $w;
+    font-size: rem(9);
+    text-align: center;
+    line-height: rem(15);
+    border-radius: 50%;
+    margin-left: 2px;
+  }
+
+  @include element($parent, 'more') {
+    display: inline-flex;
+    justify-content: center;
+    width: 100%;
+
+    @media (min-width: $tMin) {
+      width: auto;
+      flex-basis: auto;
+      flex-grow: 1;
+      justify-content: flex-end;
+    }
+
+    span {
+      font-size: rem(16);
+      line-height: rem(24);
+      font-weight: 600;
+      color: $red2;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+
+      @media (max-width: $m374) {
+        font-size: rem(14);
+      }
+
+      &::before {
+        content: '+';
+        display: inline;
+        font-size: rem(22);
+        margin-right: rem(10);
+      }
+    }
+
+    @include modifier($parent, 'open') {
+      @media (min-width: $d1280) {
+        right: rem(-6);
+      }
+
+      span {
+        &::before {
+          display: none;
+        }
+      }
+    }
+  }
+
+  @include element($parent, 'tags') {
+    margin-top: rem(30);
+    position: relative;
+
+    @media (min-width: $tMin) {
+      margin-top: rem(40);
+    }
+
+    @media (min-width: $d1280) {
+      margin-top: rem(30);
+    }
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: rem(50);
+
+      @media (min-width: $d1280) {
+        display: none;
+      }
+    }
+
+    &::before {
+      left: rem(-14);
+      background: linear-gradient(to right,
+          rgba($w, 1) 0%,
+          rgba($w, 0.7) 30%,
+          rgba($w, 0.3) 70%,
+          rgba($w, 0) 100%);
+    }
+
+    &::after {
+      right: rem(-14);
+      background: linear-gradient(to left,
+          rgba($w, 1) 0%,
+          rgba($w, 0.7) 30%,
+          rgba($w, 0.3) 70%,
+          rgba($w, 0) 100%);
+    }
+
+    @include modifier($parent, 'filter') {
+      @media (min-width: $tMin) {
+        margin-top: 0;
+      }
+
+      &:after,
+      &:before {
+        content: none;
+      }
+    }
+  }
+
+  @include element($parent, 'tags-wrp') {
+    display: flex;
+    overflow-x: auto;
+
+    @media (min-width: $d1280) {
+      flex-wrap: wrap;
+      overflow: visible;
+    }
+  }
+
+  @include element($parent, 'tag') {
+    flex-shrink: 0;
+
+    &:not(:last-of-type) {
+      margin-right: rem(10);
+      margin-bottom: rem(10);
+    }
+
+    @include modifier($parent, 'rect') {
+      margin-bottom: 0;
+
+      span {
+        border-radius: 0;
+      }
+    }
+  }
+}
