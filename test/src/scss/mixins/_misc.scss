@@ -1,0 +1,51 @@
+@function rem($size) {
+  $rem: $size / 16;
+
+  @return #{$rem}rem;
+}
+
+@mixin fs($size, $line-height: false, $weight: false) {
+  @if ($size) {
+    font-size: rem($size);
+  }
+
+  @if ($line-height) {
+    line-height: $line-height;
+  }
+
+  @if ($weight) {
+    font-weight: $weight;
+  }
+}
+
+@mixin flex($flex: flex, $align:false, $justify:false, $direction:false, $wrap: wrap) {
+  display: $flex;
+
+  @if ($wrap) {
+    flex-wrap: wrap;
+  }
+
+  @if ($align) {
+    align-items: $align;
+  }
+
+  @if ($justify) {
+    justify-content: $justify;
+  }
+
+  @if ($direction) {
+    flex-direction: $direction;
+  }
+}
+
+@mixin flexWidth($size, $fix: false) {
+  @if ($fix) {
+    flex-basis: rem($size);
+    max-width: rem($size);
+  }
+
+  @else {
+    flex-basis: $size;
+    max-width: $size;
+  }
+}

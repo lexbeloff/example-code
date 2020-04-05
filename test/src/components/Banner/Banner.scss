@@ -1,0 +1,53 @@
+$parent: banner;
+
+@include block($parent) {
+  height: rem(246);
+  width: 100%;
+
+  @include breakpoint(t) {
+    height: rem(392);
+  }
+
+  @include breakpoint(lg) {
+    height: 100%;
+  }
+
+  @include element($parent, 'img') {
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  @include modifier($parent, 'quiz') {
+    min-height: rem(320);
+    height: auto;
+
+    @include breakpoint(lg) {
+      height: 100%;
+    }
+
+    @include element($parent, 'img') {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+
+  @include modifier($parent, 'result') {
+    height: rem(320);
+
+    @include element($parent, 'img') {
+      background-position: left bottom;
+    }
+
+    @include breakpoint(t) {
+      height: rem(410);
+    }
+
+    @include breakpoint(lg) {
+      height: 100%;
+    }
+  }
+}

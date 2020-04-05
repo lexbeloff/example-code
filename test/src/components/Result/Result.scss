@@ -1,0 +1,29 @@
+$parent: result;
+
+@include block($parent) {
+  position: relative;
+
+  @include element($parent, 'text') {
+    @include breakpoint(t) {
+      margin-bottom: rem(30);
+    }
+
+    @include breakpoint(lg) {
+      margin-bottom: rem(15);
+    }
+
+    @include breakpoint(xl) {
+      @include fs(20, 1.5);
+      letter-spacing: 1px;
+      margin-bottom: rem(25);
+    }
+
+    @include breakpoint(xxl) {
+      margin-bottom: rem(45);
+    }
+  }
+
+  @include element($parent, 'share') {
+    margin-bottom: rem(20);
+  }
+}
