@@ -1,0 +1,70 @@
+$parent: map-marker;
+
+@include block($parent) {
+  text-align: center;
+
+  @include element($parent, 'circle') {
+    @include flex(inline-flex, center, center);
+    height: rem(28);
+    width: rem(28);
+    background-color: $white;
+    border: 2px solid $blue-dark;
+    border-radius: 50%;
+
+    span {
+      @include fs(12, 0, 700);
+      text-shadow: none;
+      color: $gray-24;
+    }
+
+    @include modifier($parent, 'confirmed') {
+      border-color: $red;
+    }
+
+    @include modifier($parent, 'recovered') {
+      border-color: $green;
+    }
+
+    @include modifier($parent, 'deaths') {
+      border-color: $gray;
+    }
+
+    @include modifier($parent, 'small') {
+      height: rem(34);
+      width: rem(34);
+    }
+
+    @include modifier($parent, 'size_44') {
+      height: rem(44);
+      width: rem(44);
+    }
+
+    @include modifier($parent, 'size_52') {
+      height: rem(52);
+      width: rem(52);
+    }
+
+    @include modifier($parent, 'size_60') {
+      height: rem(60);
+      width: rem(60);
+    }
+
+    @include modifier($parent, 'size_72') {
+      height: rem(72);
+      width: rem(72);
+    }
+
+    @include modifier($parent, 'dot') {
+      height: rem(10);
+      width: rem(10);
+      border-width: 1px;
+    }
+  }
+
+  @include element($parent, 'text') {
+    @include fs(12, rem(12));
+    color: $blue-dark;
+    text-shadow: none;
+    margin-top: 4px;
+  }
+}

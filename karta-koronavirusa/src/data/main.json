@@ -1,0 +1,20 @@
+{
+  "api": "file::/api.json",
+  "posts": [
+    {
+      "img": "post-1.jpg",
+      "url": "https://lifehacker.ru/mikrobiolog-o-koronaviruse/",
+      "title": "100 вопросов микробиологу о коронавирусе"
+    },
+    {
+      "img": "post-2.jpg",
+      "url": "https://lifehacker.ru/chem-zakonchitsya-pandemiya/",
+      "title": "Как будет развиваться и чем закончится пандемия коронавируса"
+    },
+    {
+      "img": "post-3.jpg",
+      "url": "https://lifehacker.ru/opasnye-privychki-pri-koronaviruse/",
+      "title": "10 привычек, из-за которых вы рискуете подхватить коронавирус и заразить других"
+    }
+  ]
+}

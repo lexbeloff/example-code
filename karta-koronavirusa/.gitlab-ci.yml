@@ -1,0 +1,53 @@
+image: ubuntu
+stages:
+  - deploy-stage
+  - deploy-prod
+deploy-stage:
+  tags:
+    - vs27
+  stage: deploy-stage
+  only:
+    - stage
+  cache:
+    paths:
+      - node_modules/
+  artifacts:
+    paths:
+      - dist/
+      - index.php
+    expire_in: 1 day
+  script:
+    - PROJECT_HOST=vs29.lifehacker.ru
+    - DEPLOY_USER=deploy
+    - DEPLOY_PATH=/srv/www/lifebeta.ru/htdocs/special/$CI_PROJECT_NAME
+    - ssh -o "StrictHostKeyChecking=no" deploy@$PROJECT_HOST "mkdir -p $DEPLOY_PATH"
+    - nvm use stable
+    - yarn install
+    - yarn build
+    - rsync -avzu --no-perms --no-owner --no-group --omit-dir-times ./index.php $DEPLOY_USER@$PROJECT_HOST:$DEPLOY_PATH
+    - rsync -avzu --no-perms --no-owner --no-group --omit-dir-times ./dist $DEPLOY_USER@$PROJECT_HOST:$DEPLOY_PATH
+
+deploy-prod:
+  tags:
+    - vs27
+  stage: deploy-prod
+  only:
+    - master
+  cache:
+    paths:
+      - node_modules/
+  artifacts:
+    paths:
+      - dist/
+      - index.php
+    expire_in: 1 day
+  script:
+    - PROJECT_HOST=vs29.lifehacker.ru
+    - DEPLOY_USER=deploy
+    - DEPLOY_PATH=/srv/www/lifehacker.ru/htdocs/special/$CI_PROJECT_NAME
+    - ssh -o "StrictHostKeyChecking=no" deploy@$PROJECT_HOST "mkdir -p $DEPLOY_PATH"
+    - nvm use stable
+    - yarn install
+    - yarn build
+    - rsync -avzu --no-perms --no-owner --no-group --omit-dir-times ./index.php $DEPLOY_USER@$PROJECT_HOST:$DEPLOY_PATH
+    - rsync -avzu --no-perms --no-owner --no-group --omit-dir-times ./dist $DEPLOY_USER@$PROJECT_HOST:$DEPLOY_PATH

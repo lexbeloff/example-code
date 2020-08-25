@@ -1,0 +1,6 @@
+$parent: title;
+
+@include block($parent) {
+  @include fs(24, rem(30), 700);
+  font-family: $RobotoCondensed;
+}

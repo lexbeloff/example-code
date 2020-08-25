@@ -1,0 +1,188 @@
+$parent: table;
+
+@include block($parent) {
+  position: relative;
+
+  @include element($parent, 'main') {
+    border: 1px solid $gray-e2;
+    border-top: none;
+    overflow: hidden;
+    height: 0;
+
+    @include breakpoint(sm) {
+      height: rem(178);
+    }
+  }
+
+  @include element($parent, 'row') {
+    @include flex(flex, false, space-between, $wrap: false);
+    min-height: rem(30);
+
+    &:not(:last-of-type) {
+      border-bottom: 1px solid $gray-e2;
+    }
+
+    @include modifier($parent, 'head') {
+      border-left: 1px solid $gray-e2;
+      border-right: 1px solid $gray-e2;
+      background-color: $gray-f2;
+      min-height: auto;
+      padding: 0;
+      height: rem(35);
+
+      @include breakpoint(xs) {
+        height: rem(30);
+      }
+
+      @include element($parent, 'cell') {
+        font-family: $RobotoCondensed;
+        font-weight: 700;
+        color: $gray-24;
+
+        &:last-of-type {
+          position: relative;
+
+          &::after {
+            @include coverPseudo();
+            right: -2px;
+            left: auto;
+            width: 70%;
+            background: linear-gradient(90deg, rgba(242, 242, 242, 0) 0%, $gray-f2 76.04%);
+
+            @include breakpoint(sm) {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @include element($parent, 'cell') {
+    @include fs(11, rem(13));
+    @include flex(flex, center, center);
+    width: rem(60);
+    border-left: 1px solid $gray-e2;
+    padding: 5px 0;
+
+    @include breakpoint(xs) {
+      @include fs(12, rem(14));
+      width: rem(76);
+    }
+
+    @include media-between(sm, sm) {
+      @include fs(14, rem(14));
+      width: rem(112);
+    }
+
+    &:first-of-type {
+      flex: 1 0 auto;
+      padding-left: rem(16);
+      padding-right: 5px;
+      border-left: none;
+      justify-content: flex-start;
+    }
+
+    &:last-of-type {
+      @include breakpoint_max(xs) {
+        width: rem(70);
+      }
+    }
+  }
+
+  @include element($parent, 'cell-name') {
+    @include flex(inline-flex, $wrap: false);
+
+    img {
+      width: rem(12);
+      height: rem(8);
+      margin-right: rem(5);
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+  }
+
+  @include element($parent, 'button') {
+    @include flex(flex, false, center);
+    position: relative;
+
+    @include breakpoint(sm) {
+      margin-top: rem(16);
+    }
+
+    &::after {
+      @include coverPseudo();
+      top: auto;
+      height: rem(118);
+      left: 0;
+      right: 0;
+      background: linear-gradient(180deg, rgba($white, 0) 0%, $white 44.27%);
+      opacity: 0;
+      transition: opacity $ease;
+      pointer-events: none;
+      bottom: rem(-24);
+    }
+
+    button {
+      position: relative;
+      z-index: 2;
+    }
+  }
+
+  @include modifier($parent, 'opened') {
+    @include element($parent, 'main') {
+      height: auto;
+    }
+
+    @include element($parent, 'row--head') {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+    }
+
+    @include element($parent, 'button') {
+      position: sticky;
+      bottom: rem(24);
+      z-index: 5;
+      margin-top: rem(16);
+
+      &::after {
+        opacity: 1;
+      }
+    }
+  }
+
+  // Microsoft Edge Sticky fix
+  @include modifier($parent, 'edge') {
+    position: relative;
+    padding-bottom: rem(80);
+
+    @include element($parent, 'wrap') {
+      padding-top: rem(30);
+      position: relative;
+    }
+
+    @include element($parent, 'row--head') {
+      position: absolute;
+      width: 100%;
+    }
+
+    @include element($parent, 'button') {
+      position: absolute;
+      width: 100%;
+      margin-top: 0;
+    }
+  }
+}
+
+.show-enter-active,
+.show-leave-active {
+  transition: opacity 0.5s, height 0.5s linear 0.3s;
+}
+
+.show-enter,
+.show-leave-to {
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+}

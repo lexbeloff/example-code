@@ -1,0 +1,55 @@
+$parent: home;
+
+@include block($parent) {
+  @include flex(flex, false, false, column);
+  flex: 1 0 auto;
+
+  @include breakpoint(md) {
+    height: calc(100% - 56px);
+    flex-direction: row;
+  }
+
+  @include element($parent, 'main') {
+    height: rem(288);
+
+    @include breakpoint(sm) {
+      height: rem(384);
+    }
+
+    @include breakpoint(md) {
+      display: block;
+      width: calc(100% - 440px);
+      height: 100%;
+      order: 2;
+    }
+
+    @include breakpoint(lg) {
+      width: calc(100% - 456px);
+    }
+  }
+
+  @include element($parent, 'info') {
+    flex: 1 0 auto;
+
+    @include breakpoint(md) {
+      width: rem(440);
+      height: 100%;
+      flex: none;
+      order: 1;
+    }
+
+    @include breakpoint(lg) {
+      width: rem(456);
+    }
+  }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0
+}

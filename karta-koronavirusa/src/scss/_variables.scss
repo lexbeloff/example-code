@@ -1,0 +1,44 @@
+// FONTS
+$RobotoCondensed: "Roboto Condensed", "Roboto", sans-serif, -apple-system;
+$Roboto: "Roboto", "Arial", sans-serif, -apple-system;
+
+// BASE
+$base-transition: 0.3s;
+$ease: 0.3s ease;
+
+$breakpoints_min: (
+	'xs': 375px,
+	'mob': 468px,
+	'sm': 768px,
+	'md': 1024px,
+	'lg': 1280px,
+	'xl': 1920px
+);
+$breakpoints_max: (
+	'xs': 767px,
+	'sm': 1023px,
+	'lg': 1279px,
+	'xl': 1919px
+);
+
+// COLORS
+$black: #000;
+$white: #fff;
+$orange: #ed5e42;
+$green: #229f35;
+$red: #fc9090;
+$gray: #3f3e3e;
+$gray-24: #242424;
+$gray-34: #343649;
+$gray-e7: #e7e7e7;
+$gray-e2: #e2e2e2;
+$gray-ab: #ababab;
+$gray-f2: #f2f2f2;
+$gray-79: #797979;
+$gray-ef: #efefef;
+$blue: #2e7cf6;
+$blue-dark: #547a98;
+$blue-1c: #1c4069;
+$tw: #1da1f2;
+$vk: #4680c2;
+$fb: #3b5998;

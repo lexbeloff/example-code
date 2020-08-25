@@ -1,0 +1,19 @@
+$parent: button;
+
+@include block($parent) {
+  @include fs(14, rem(16), 700);
+  display: block;
+  height: rem(40);
+  border-radius: 2px;
+  background-color: $orange;
+  color: $white;
+  max-width: rem(288);
+  width: 100%;
+  transition: background-color $ease;
+
+  @include breakpoint(lg) {
+    &:hover {
+      background-color: rgba($orange, 0.8);
+    }
+  }
+}

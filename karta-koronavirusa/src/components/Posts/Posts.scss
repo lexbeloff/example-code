@@ -1,0 +1,42 @@
+$parent: posts;
+
+@include block($parent) {
+  border: 1px solid $gray-e7;
+  border-top: 2px solid $orange;
+  padding: 0 rem(15);
+
+  @include element($parent, 'item') {
+    padding: rem(16) 0;
+
+    &:not(:first-of-type) {
+      border-top: 1px solid $gray-e7;
+    }
+  }
+
+  @include element($parent, 'link') {
+    @include flex(flex, center, $wrap: false);
+
+    @include breakpoint(md) {
+      &:hover {
+        @include element($parent, 'title') {
+          color: $orange;
+        }
+      }
+    }
+  }
+
+  @include element($parent, 'img') {
+    height: rem(56);
+    width: rem(56);
+    flex-shrink: 0;
+    margin-right: rem(16);
+  }
+
+  @include element($parent, 'title') {
+    @include fs(16, rem(18), 700);
+    font-family: $RobotoCondensed;
+    flex-basis: auto;
+    color: $black;
+    transition: color $ease;
+  }
+}

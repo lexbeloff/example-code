@@ -1,0 +1,33 @@
+$parent: footer;
+
+@include block($parent) {
+  margin-top: rem(16);
+
+  @include element($parent, 'copyright') {
+    @include fs(12, rem(14), 500);
+    @include flex(inline-flex, center);
+    color: $black;
+
+    a {
+      color: inherit;
+      margin-left: 5px;
+
+
+      @include breakpoint(lg) {
+        transition: color $ease;
+
+        &:hover {
+          color: $orange;
+        }
+      }
+    }
+
+    span {
+      line-height: rem(20);
+    }
+
+    @include breakpoint(sm) {
+      order: 1;
+    }
+  }
+}

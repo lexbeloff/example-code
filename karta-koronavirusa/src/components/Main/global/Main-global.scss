@@ -1,0 +1,35 @@
+$parent: main-global;
+
+@include block($parent) {
+  border: 1px solid $gray-e7;
+  border-top: 2px solid $orange;
+  padding: 0 rem(16);
+
+  @include element($parent, 'row') {
+    @include flex(flex, center, space-between);
+    height: rem(50);
+    @include fs(16, rem(19));
+
+    &:not(:first-of-type) {
+      border-top: 1px solid $gray-e7;
+    }
+  }
+
+  @include element($parent, 'title') {
+    color: $gray-34;
+    font-weight: 500;
+  }
+
+  @include element($parent, 'count') {
+    color: $gray;
+    font-weight: 700;
+
+    @include modifier($parent, 'confirmed') {
+      color: $red;
+    }
+
+    @include modifier($parent, 'recovered') {
+      color: $green;
+    }
+  }
+}

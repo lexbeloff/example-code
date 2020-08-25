@@ -1,0 +1,62 @@
+$parent: share;
+
+@include block($parent) {
+  @include element($parent, 'icons') {
+    display: flex;
+    align-items: center;
+  }
+
+  @include element($parent, 'social') {
+    width: rem(34);
+    height: rem(34);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background-color $ease;
+
+    &:not(:last-of-type) {
+      margin-right: rem(12);
+    }
+
+    svg {
+      display: block;
+      transition: fill $ease;
+      width: rem(16);
+      height: rem(16);
+      fill: $white;
+    }
+
+    @include modifier($parent, 'tw') {
+      background-color: $tw;
+
+      @include breakpoint(lg) {
+        &:hover {
+          background-color: rgba($tw, 0.7);
+        }
+      }
+    }
+
+    @include modifier($parent, 'vk') {
+      background-color: $vk;
+
+      @include breakpoint(lg) {
+        &:hover {
+          background-color: rgba($vk, 0.7);
+        }
+      }
+    }
+
+    @include modifier($parent, 'fb') {
+      background-color: $fb;
+
+      @include breakpoint(lg) {
+        &:hover {
+          background-color: rgba($fb, 0.7);
+        }
+      }
+    }
+  }
+}

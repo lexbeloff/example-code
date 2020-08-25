@@ -1,0 +1,38 @@
+$parent: 'map-tooltip';
+
+@include block($parent) {
+  background-color: $white;
+  box-shadow: 0 rem(10) rem(30) rgba(21, 15, 53, 0.4);
+  border-radius: 2px;
+  padding: rem(16) rem(24);
+  position: absolute;
+  min-width: rem(184);
+  font-family: $Roboto;
+
+  @include element($parent, 'title') {
+    @include fs(14, rem(14), 700);
+    color: $orange;
+    margin-bottom: 8px;
+  }
+
+  @include element($parent, 'data') {
+    padding-top: rem(8);
+    border-top: 1px solid $gray-e7;
+  }
+
+  @include element($parent, 'data-row') {
+    @include flex(flex, center, $wrap: false);
+    @include fs(14, rem(14));
+    color: $black;
+
+    &:not(:last-of-type) {
+      margin-bottom: rem(16);
+    }
+
+    span {
+      &:last-of-type {
+        font-weight: 700;
+      }
+    }
+  }
+}

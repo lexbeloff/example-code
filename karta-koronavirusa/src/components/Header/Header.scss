@@ -1,0 +1,85 @@
+$parent: header;
+
+@include block($parent) {
+  position: relative;
+  z-index: 100;
+  background-color: $white;
+  box-shadow: 0 4px 4px rgba($black, 0.04);
+  height: rem(56);
+  width: 100%;
+
+  @include element($parent, 'container') {
+    @include flex(flex, center, space-between);
+    height: 100%;
+  }
+
+  @include element($parent, 'main') {
+    @include breakpoint(md) {
+      @include flex(flex, center);
+    }
+  }
+
+  @include element($parent, 'logo') {
+    height: rem(16);
+    width: rem(92);
+    margin-bottom: 8px;
+    display: block;
+    position: relative;
+
+    svg {
+      height: 100%;
+      width: 100%;
+      fill: $black;
+      transition: fill $ease;
+    }
+
+    span {
+      font-size: 0;
+      color: transparent;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    @include breakpoint(md) {
+      height: rem(24);
+      width: rem(132);
+      margin-bottom: 0;
+      margin-right: 8px;
+
+      &:hover {
+        svg {
+          fill: $orange;
+        }
+      }
+    }
+  }
+
+  @include element($parent, 'title') {
+    @include fs(14, rem(14), 400);
+
+    @include breakpoint(md) {
+      @include fs(16, rem(16));
+      @include flex(inline-flex, center);
+      margin-top: 5px;
+    }
+
+    &::before {
+      @include breakpoint(md) {
+        content: '';
+        margin-right: 8px;
+        height: rem(19);
+        width: 1px;
+        background-color: $black;
+      }
+    }
+  }
+
+  @include element($parent, 'share') {
+    display: none;
+
+    @include breakpoint(sm) {
+      display: flex;
+    }
+  }
+}

@@ -1,0 +1,99 @@
+$parent: main;
+
+@include block($parent) {
+  @include flex(flex, false, false, column);
+  background-color: $white;
+  border-radius: 6px;
+  overflow: visible;
+
+  @include breakpoint(md) {
+    border-radius: 0;
+    box-shadow: 7px 0 rem(30) rgba(19, 47, 72, 0.25);
+    position: relative;
+    z-index: 10;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  @include element($parent, 'container') {
+    @include flex(flex, false, space-between, column);
+    flex: 1 0 auto;
+    padding-top: rem(16);
+    padding-bottom: rem(24);
+
+    @include breakpoint(md) {
+      padding-bottom: rem(20);
+    }
+  }
+
+  @include element($parent, 'content') {
+    flex: 1 0 auto;
+  }
+
+  @include element($parent, 'title') {
+    margin-bottom: 8px;
+
+    @include modifier($parent, 'countries') {
+      display: none;
+
+      @include breakpoint(sm) {
+        display: block;
+      }
+    }
+  }
+
+  @include element($parent, 'list') {
+    margin-top: rem(16);
+
+    @include breakpoint(sm) {
+      margin-top: rem(32);
+    }
+  }
+
+  @include element($parent, 'table') {
+    margin: 0 rem(-16);
+
+    @include breakpoint(sm) {
+      margin: 0;
+      border-top: 2px solid $orange;
+    }
+  }
+
+  @include element($parent, 'button') {
+    margin: 0 auto;
+  }
+
+  @include element($parent, 'posts') {
+    margin-top: rem(32);
+  }
+
+  @include element($parent, 'share') {
+    @include flex(flex, center, center);
+    margin-top: rem(24);
+
+    @include breakpoint(sm) {
+      display: none;
+    }
+  }
+
+  @include element($parent, 'updated') {
+    @include fs(12, rem(14));
+    margin-top: rem(24);
+    color: $gray-79;
+
+    b {
+      font-weight: 700;
+    }
+
+    a {
+      color: $blue;
+      text-decoration: underline;
+    }
+
+    > span {
+      @include breakpoint(lg) {
+        display: block;
+      }
+    }
+  }
+}
